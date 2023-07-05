@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <title>
+            {% block title %}
+                Океан Камчатка Сахалин
+            {% endblock %}
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    </head>
+    <body>
+        {% block body %}
+            Default content
+        {% endblock %}
+        <script src="{% static "js/bootstrap.bundle.js" %}"></script>
+    </body>
+</html>
