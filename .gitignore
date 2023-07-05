@@ -1,4 +1,8 @@
 __pycache__
-OceanShopProject
 static/admin
+OceanShopProject/OceanShopProject/__init__.py
+OceanShopProject/OceanShopProject/asgi.py
+manage.py
 passenger_wsgi.py
+OceanShopProject/OceanShopProject/settings.py
+OceanShopProject/OceanShopProject/wsgi.py
