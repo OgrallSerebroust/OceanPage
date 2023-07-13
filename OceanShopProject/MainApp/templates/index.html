@@ -1,6 +1,71 @@
 {% extends "base.html" %}
-{% block body %}
+{% load static %}
+{% block content %}
+    <div class="indexBG" id="indexBGFull">
+        <img src="{% static "image/indexBG.jpg" %}" alt="">
+    </div>
+    <div class="indexBG" id="indexBGMobile">
+        <img src="{% static "image/indexBGMobile.png" %}" alt="">
+    </div>
+    <div class="container-fluid" id="promotionBlock">
+        <div class="row">
+            <div class="col-12 col-lg-6 order-2 order-ld-1">
+                <div class="card mx-auto text-center" id="promoCard">
+                    <img src="{% static "image/card.jpg" %}" class="card-img-top" alt="promotionalCard">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            Лосось-филе
+                        </h6>
+                        <p class="card-text">
+                            600р
+                        </p>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <h1 id="motto">
+                    Океан Камчатка Сахалин - крупнейшая Федеральная сеть состоящая из более 189 рыбных магазинов
+                </h1>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        Hello
+        <div class="row blockTitle">
+            <div class="col-12 text-center">
+                <h3>
+                    Мы стараемся для вас
+                </h3>
+            </div>
+        </div>
+        <div class="row blockBenefits">
+            <div class="col-12 col-lg-4 text-center benefitsCards" id="shopBlock">
+                <h4>
+                    Приятная цена
+                </h4>
+                <p>
+                    Ежедневно мы стараемся найти лучшую цену на ваши любимые продукты, ищем новых поставщиков наилучшего соотношения цены и качества и постоянно ищем правильных поставщиков для нашей продукции
+                </p>
+                <a class="btn btn-primary mainButtons" href="{% url "catalog" %}">
+                    К каталогу
+                </a>
+            </div>
+            <div class="col-12 col-lg-4 text-center benefitsCards">
+                <img class="img-fluid" src="{% static "image/logoFish.png" %}">
+                <h4>
+                    Свежайшая рыба каждый день
+                </h4>
+                <p>
+                    Весь асортимент мы получаем лично у проверенных поставщиков и регулярно контролируем качество продукции
+                </p>
+            </div>
+            <div class="col-12 col-lg-4 text-center benefitsCards" id="salesBlock">
+                <h4>
+                    Акции
+                </h4>
+                <p>
+                    В нашем магазине постоянно проходят акции, например, каждый четверг скидка 10% на креветки! Всё для того, чтобы Вы, наши любимые покупатели, всегда получали лучшую рыбу, по лучшей цене!
+                </p>
+            </div>
+        </div>
     </div>
 {% endblock %}

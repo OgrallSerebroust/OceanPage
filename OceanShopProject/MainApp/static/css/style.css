@@ -1,3 +1,130 @@
 body {
-    color: #FF0000;
+    font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+}
+
+.menuBlocks {
+    background: #0E0E0E;
+    color: #FFFFFF;
+}
+
+.navbarMenuLinks {
+    color: #FFFFFF;
+}
+
+.mainButtons {
+    background-color: #2B6092;
+}
+
+.indexBG {
+    position: absolute;
+    width: 100%;
+    background: #3F3E3A;
+    z-index: -1;
+}
+
+.indexBG > img {
+    width: 100%;
+    z-index: -1;
+    filter: brightness(30%);
+}
+
+.blockTitle {
+    padding-top: 13.8vh;
+}
+
+.blockBenefits {
+    padding-top: 4.63vh;
+}
+
+.benefitsCards > img {
+    padding-top: 4.32vh;
+}
+
+.benefitsCards > h4 {
+    padding-top: 10vh;
+    padding-bottom: 1vh;
+}
+
+.benefitsCards > a {
+    margin-bottom: 10vh;
+}
+
+#menuBlockFull {
+    height: 11vh;
+}
+
+#menuNavbarToggler {
+    color: #FFFFFF;
+}
+
+#navbarBrandLogoFull {
+    width: 20vw;
+}
+
+#navbarBrandLogoMobile {
+    width: 50vw;
+}
+
+#promotionBlock > .row {
+    align-items: center;
+}
+
+#motto {
+    color: #FFFFFF;
+}
+
+#salesBlock {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../image/salesShrimps.jpg);
+    background-size: cover;
+    color: #FFFFFF;
+}
+
+#shopBlock {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../image/shopLink.jpg);
+    background-size: cover;
+    color: #FFFFFF;
+}
+
+@media(max-width: 991.98px) {
+    .indexBG {
+        height: 92vh;
+    }
+
+    .indexBG > img {
+        height: 92vh;
+    }
+
+    #menuBlockFull, #indexBGFull {
+        display: none;
+    }
+
+    #promotionBlock > .row {
+        height: 92vh;
+    }
+
+    #motto {
+        text-align: center;
+    }
+}
+
+@media(min-width: 991.98px) {
+    .indexBG {
+        height: 89vh;
+    }
+
+    .indexBG > img {
+        height: 89vh;
+    }
+    
+    #menuBlockMobile, #indexBGMobile {
+        display: none;
+    }
+
+    #promotionBlock > .row {
+        height: 89vh;
+    }
+
+    #promoCard {
+        width: 75%;
+    }
 }

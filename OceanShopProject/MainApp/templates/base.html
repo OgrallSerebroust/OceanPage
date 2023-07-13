@@ -10,10 +10,189 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/fontawesome.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'fontawesomefree/css/solid.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
     </head>
     <body>
-        {% block body %}
+        {% block navbar %}
+            <nav class="navbar navbar-expand-lg menuBlocks" id="menuBlockFull">
+                <div class="container-fluid">            
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link navbarMenuLinks" aria-current="page" href="{% url "index" %}">
+                                Главная
+                            </a> <!--TODO active?-->
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Каталог
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Рыба замороженная
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Вяленые продукты
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Деликатесы
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Бакалея
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Магазин
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        О магазине
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Как сделать заказ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Доставка
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Контакты
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Статьи
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Советы и рецепты
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class="navbar-brand" href="{% url "index" %}">
+                        <img src="{% static "image/logo.webp" %}" alt="logo" id="navbarBrandLogoFull">
+                    </a>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">
+                            Найти
+                        </button>
+                    </form>
+                </div>
+            </nav>
+            <nav class="navbar navbar-expand-lg menuBlocks" id="menuBlockMobile">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" id="menuNavbarToggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapsedContent" aria-controls="navbarCollapsedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa-solid fa-bars"></i>
+                    </button> 
+                    <a class="navbar-brand" href="{% url "index" %}">
+                        <img src="{% static "image/logo.webp" %}" alt="logo" id="navbarBrandLogoMobile">
+                    </a>
+                    <div class="collapse navbar-collapse" id="navbarCollapsedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link navbarMenuLinks" aria-current="page" href="{% url "index" %}">
+                                    Главная
+                                </a> <!--TODO active?-->
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Каталог
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Рыба замороженная
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Вяленые продукты
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Деликатесы
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Бакалея
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Магазин
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            О магазине
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Как сделать заказ
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Доставка
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Контакты
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Статьи
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            Советы и рецепты
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>                          
+        {% endblock %}
+        {% block content %}
             Default content
         {% endblock %}
         <script src="{% static "js/bootstrap.bundle.js" %}"></script>
