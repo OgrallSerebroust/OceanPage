@@ -24,29 +24,41 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+                        <button class="nav-link active" id="frozenFishTab" data-bs-toggle="tab" data-bs-target="#frozenFishTabPanel" type="button" role="tab" aria-controls="frozenFishTabPanel" aria-selected="true">
+                            Рыба замороженная
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+                        <button class="nav-link" id="driedFoodsTab" data-bs-toggle="tab" data-bs-target="#driedFoodsTabPanel" type="button" role="tab" aria-controls="driedFoodsTabPanel" aria-selected="false">
+                            Вяленные продукты
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+                        <button class="nav-link" id="delicaciesTab" data-bs-toggle="tab" data-bs-target="#delicaciesTabPanel" type="button" role="tab" aria-controls="delicaciesTabPanel" aria-selected="false">
+                            Деликатесы
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+                        <button class="nav-link" id="groceryTab" data-bs-toggle="tab" data-bs-target="#groceryTabPanel" type="button" role="tab" aria-controls="groceryTabPanel" aria-selected="false">
+                            Бакалея
+                        </button>
                     </li>
                   </ul>
                   <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                        Hello
+                    <div class="tab-pane fade show active" id="frozenFishTabPanel" role="tabpanel" aria-labelledby="frozenFishTab" tabindex="0">
+                        {% include "catalogsContentBase.html" %}
                     </div>
-                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                        Hello hello
+                    <div class="tab-pane fade" id="driedFoodsTabPanel" role="tabpanel" aria-labelledby="driedFoodsTab" tabindex="1">
+                        {% include "catalogsContentBase.html" %}
                     </div>
-                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
-                    <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade" id="delicaciesTabPanel" role="tabpanel" aria-labelledby="delicaciesTab" tabindex="2">
+                        {% include "catalogsContentBase.html" %}
+                    </div>
+                    <div class="tab-pane fade" id="groceryTabPanel" role="tabpanel" aria-labelledby="groceryTab" tabindex="3">
+                        {% include "catalogsContentBase.html" %}
+                    </div>
                   </div>
             </div>
         </div>
