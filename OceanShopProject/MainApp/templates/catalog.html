@@ -2,65 +2,70 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center blocksTitleFirst">
                 <h3>
-                    Ваши любимые продукты
-                </h3>
-                Позиции, которые пользуются особым вниманием у наших покупателей
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                6 Карточек
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <h3>
-                    Каталог
+                    <b style="color: #034579;">
+                        Каталог
+                    </b>
                 </h3>
                 Информация о всех наших товарах
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="frozenFishTab" data-bs-toggle="tab" data-bs-target="#frozenFishTabPanel" type="button" role="tab" aria-controls="frozenFishTabPanel" aria-selected="true">
-                            Рыба замороженная
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="driedFoodsTab" data-bs-toggle="tab" data-bs-target="#driedFoodsTabPanel" type="button" role="tab" aria-controls="driedFoodsTabPanel" aria-selected="false">
-                            Вяленные продукты
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="delicaciesTab" data-bs-toggle="tab" data-bs-target="#delicaciesTabPanel" type="button" role="tab" aria-controls="delicaciesTabPanel" aria-selected="false">
-                            Деликатесы
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="groceryTab" data-bs-toggle="tab" data-bs-target="#groceryTabPanel" type="button" role="tab" aria-controls="groceryTabPanel" aria-selected="false">
-                            Бакалея
-                        </button>
-                    </li>
-                  </ul>
-                  <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="frozenFishTabPanel" role="tabpanel" aria-labelledby="frozenFishTab" tabindex="0">
-                        {% include "catalogsContentBase.html" %}
+        {% if page_data.paginator.count != 0 %}
+            <div class="row row-cols-1 row-cols-lg-3 g-4">
+	            {% for product in page_data %}
+		            <div class="col">
+		                <div class="card h-100 productCard">
+			                <img src="{{ product.photo.url }}" class="card-img-top cardsHeadImage" alt="...">
+				            <div class="card-body">
+					            <h5 class="card-title text-center productCardTitle">
+				                    {{ product.name }}
+				                </h5>
+				                <p class="card-text">
+					                {{ product.description }}
+				                </p>
+			                    <div class="row card-text">
+					                <div class="col-12">
+						                <i class="fa-solid fa-globe productCardIcons"></i> Страна производитель: {{ product.country }}
+						            </div>
+						            <div class="col-12">
+						                <i class="fa-solid fa-weight-scale productCardIcons"></i> Вес: {{ product.weight }}
+					                </div>
+				                </div>
+			                    <p class="card-text">
+				                    <h4>
+    						            <b>
+	    							        {{ product.price|floatformat:0}} <i class="fa-solid fa-ruble-sign"></i>
+		    					        </b>
+			    			        </h4>
+				    	        </p>
+    				        </div>
+	    			        {% if product.count <= 3 %}
+		    		            <div class="card-footer">
+			    	                <small class="text-muted">
+				    	                <span class="badge text-bg-danger productCardBadge">
+					    	                Осталось в наличии: {{product.count}}
+						                </span>
+						            </small>
+    					        </div>
+	    				        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger productCardBadge">
+		    			            <i class="fa-solid fa-exclamation"></i>
+			    	                <span class="visually-hidden">
+				    	                Товара осталось мало на складе
+				                    </span> 
+			                    </span>
+			                {% endif %}
+    		            </div>
                     </div>
-                    <div class="tab-pane fade" id="driedFoodsTabPanel" role="tabpanel" aria-labelledby="driedFoodsTab" tabindex="1">
-                        {% include "catalogsContentBase.html" %}
-                    </div>
-                    <div class="tab-pane fade" id="delicaciesTabPanel" role="tabpanel" aria-labelledby="delicaciesTab" tabindex="2">
-                        {% include "catalogsContentBase.html" %}
-                    </div>
-                    <div class="tab-pane fade" id="groceryTabPanel" role="tabpanel" aria-labelledby="groceryTab" tabindex="3">
-                        {% include "catalogsContentBase.html" %}
-                    </div>
-                  </div>
+	            {% endfor %}
             </div>
-        </div>
+            {% include "catalogPaginator.html" %}
+        {% else %}
+            <div class="row">
+                <div class="col-12 text-center">
+                    К сожалению, товары в данной категории ещё не добавлены... Возвращайтесь чуть позже!
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

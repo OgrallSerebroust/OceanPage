@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row blockTitle">
+        <div class="row blocksTitle">
             <div class="col-12 text-center">
                 <h3>
                     Мы стараемся для вас
@@ -67,5 +67,66 @@
                 </p>
             </div>
         </div>
+        {% if most_relevanted_products.count > 0 %}
+            <div class="row">
+                <div class="col-12 text-center blocksTitle">
+                    <h3>
+                        Ваши любимые продукты
+                    </h3>
+                    Позиции, которые пользуются особым вниманием у наших покупателей
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+	                <div class="row row-cols-1 row-cols-lg-3 g-4">
+    	                {% for most_relevanted_product in most_relevanted_products %}
+			                <div class="col">
+        		                <div class="card h-100 productCard">
+          			                <img src="{{ most_relevanted_product.photo.url }}" class="card-img-top" alt="...">
+          			                <div class="card-body">
+            			                <h5 class="card-title text-center productCardTitle">
+							                {{ most_relevanted_product.name }}
+						                </h5>
+            			                <p class="card-text">
+							                {{ most_relevanted_product.description }}
+						                </p>
+                                        <div class="row card-text">
+                                            <div class="col-12">
+                                                <i class="fa-solid fa-globe productCardIcons"></i> Страна производитель: {{ most_relevanted_product.country }}
+                                            </div>
+                                            <div class="col-12">
+                                                <i class="fa-solid fa-weight-scale productCardIcons"></i> Вес: {{ most_relevanted_product.weight }}
+                                            </div>
+                                        </div>
+                                        <p class="card-text">
+                                            <h4>
+                                                <b>
+                                                    {{ most_relevanted_product.price|floatformat:0}} <i class="fa-solid fa-ruble-sign"></i>
+                                                </b>
+                                            </h4>
+                                        </p>
+          			                </div>
+                                    {% if most_relevanted_product.count <= 3 %}
+					                    <div class="card-footer">
+						                    <small class="text-muted">
+                                                <span class="badge text-bg-danger productCardBadge">
+                                                    Осталось в наличии: {{most_relevanted_products.count}}
+                                                </span>
+                                            </small>
+					                    </div>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger productCardBadge">
+                                            <i class="fa-solid fa-exclamation"></i>
+                                            <span class="visually-hidden">
+                                                Товара осталось мало на складе
+                                            </span>
+                                        </span>
+                                    {% endif %}
+        		                </div>
+      		                </div>
+		                {% endfor %}
+	                </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

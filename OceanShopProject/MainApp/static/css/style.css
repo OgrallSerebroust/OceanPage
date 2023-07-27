@@ -1,5 +1,6 @@
 body {
     font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+    color: #0E0E0E;
 }
 
 .menuBlocks {
@@ -10,6 +11,22 @@ body {
 .navbarMenuLinks {
     color: #FFFFFF;
 }
+
+
+.navbarMenuLinks:hover {
+    color: #E52520;
+    text-decoration: underline;
+}
+
+.navbarMenuLinks:focus {
+    color: #034579;
+    text-decoration: underline;
+}
+
+.navbarMenuLinks:active {
+    color: #034579;
+}
+
 
 .mainButtons {
     background-color: #2B6092;
@@ -28,8 +45,15 @@ body {
     filter: brightness(30%);
 }
 
-.blockTitle {
+.blocksTitle {
     padding-top: 13.8vh;
+    /*padding-top: 3vh;*/
+    padding-bottom: 3vh;
+}
+
+.blocksTitleFirst {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
 }
 
 .blockBenefits {
@@ -47,6 +71,77 @@ body {
 
 .benefitsCards > a {
     margin-bottom: 10vh;
+}
+
+.productCard {
+    background: #0E0E0E;
+    color: #FFFFFF;
+}
+
+.cardsHeadImage {
+    transition: 1s;
+}
+
+.cardsHeadImage:hover {
+    transform: scale(1.2);
+    z-index: 1;
+}
+
+.productCardTitle {
+    background: #E52520;
+}
+
+.productCardIcons {
+    color: #034579;
+}
+
+.productCardBadge {
+    background: #E52520 !important;
+}
+
+.catalogTabs > .nav-item > .nav-link {
+    color: #0E0E0E;
+}
+
+.catalogTabs > .nav-item > .nav-link:hover, .catalogTabs > .nav-item > .nav-link:active {
+    border-color: #0E0E0E;
+}
+
+.catalogNavigationRow > .col-12 {
+    padding-top: 1.5vh;
+}
+
+.catalogNavigationRow > div > nav > ul {
+    justify-content: center;
+}
+
+.catalogNavigationRow > div > nav > ul > li > .page-link {
+    background-color: #0E0E0E;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.catalogNavigationRow > div > nav > ul > li > .page-link:hover {
+    color: #E52520;
+}
+
+.catalogNavigationRow > div > nav > ul > li > .page-link:focus {
+    box-shadow: 0 0 0 0.25rem rgba(43, 96, 146, 0.25);
+    color: #2B6092;
+}
+
+.socials {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.socials > a {
+    color: #0E0E0E;
+}
+
+.contactsIcons {
+    color: #034579;
 }
 
 #menuBlockFull {
@@ -85,6 +180,37 @@ body {
     color: #FFFFFF;
 }
 
+
+#contactsTitleBlock {
+    height: 14.7vh;
+}
+
+#contactsContent {
+    height: 74.3vh;
+}
+
+#deliveryTitle {
+    height: 14.7vh;
+}
+
+#deliveryContent {
+    height: 74.3vh;
+}
+
+#contactsAddres {
+    font-weight: bold;
+    padding-bottom: 1.5vh;
+}
+
+#contactsPhone {
+    text-decoration: none;
+}
+
+#contactsTelegramLink {
+    color: #0E0E0E;
+    text-decoration: none;
+}
+
 @media(max-width: 991.98px) {
     .indexBG {
         height: 92vh;
@@ -104,6 +230,14 @@ body {
 
     #motto {
         text-align: center;
+    }
+
+    #deliveryContent {
+        height: 67vh;
+    }
+
+    #contactsContent {
+        height: 67vh;
     }
 }
 
