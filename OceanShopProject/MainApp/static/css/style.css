@@ -164,6 +164,10 @@ body {
     align-items: center;
 }
 
+#indexCardHeadImg {
+    max-height: 55vh;
+}
+
 #motto {
     color: #FFFFFF;
 }

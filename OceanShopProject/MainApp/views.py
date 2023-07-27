@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
+from random import randint
 from .models import ProductType, Product
 
 
@@ -8,8 +9,10 @@ def get_categories_for_menu():
 
 
 def index(request):
+    all_products_list = Product.objects.get(id = randint(1, Product.objects.count()))
     most_relevanted_products = Product.objects.all()[:6]
     return render(request, "index.html", {
+        "all_products_list": all_products_list,
         "categories": get_categories_for_menu,
         "most_relevanted_products": most_relevanted_products
     })
@@ -17,7 +20,10 @@ def index(request):
 
 def catalog(request):
     category = request.GET.get("category")
-    products_list = Product.objects.filter(product_type_id = category) #TODO category check
+    try:
+        products_list = Product.objects.filter(product_type_id = category)
+    except ValueError:
+        products_list = Product.objects.filter(product_type_id = 1)
     paginate_frozen_fish_products = Paginator(products_list, 12)
     page_number = request.GET.get("page_number")
     page_data = paginate_frozen_fish_products.get_page(page_number)

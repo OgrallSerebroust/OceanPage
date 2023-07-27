@@ -10,17 +10,44 @@
     <div class="container-fluid" id="promotionBlock">
         <div class="row">
             <div class="col-12 col-lg-6 order-2 order-ld-1">
-                <div class="card mx-auto text-center" id="promoCard">
-                    <img src="{% static "image/card.jpg" %}" class="card-img-top" alt="promotionalCard">
+                <div class="card h-100 productCard">
+                    <img src="{{ all_products_list.photo.url }}" class="card-img-top" id="indexCardHeadImg" alt="...">
                     <div class="card-body">
-                        <h6 class="card-title">
-                            Лосось-филе
-                        </h6>
+                        <h5 class="card-title text-center productCardTitle">
+                            {{ all_products_list.name }}
+                        </h5>
+                        <div class="row card-text">
+                            <div class="col-12">
+                                <i class="fa-solid fa-globe productCardIcons"></i> Страна производитель: {{ all_products_list.country }}
+                            </div>
+                            <div class="col-12">
+                                <i class="fa-solid fa-weight-scale productCardIcons"></i> Вес: {{ all_products_list.weight }} кг
+                            </div>
+                        </div>
                         <p class="card-text">
-                            600р
+                            <h4>
+                                <b>
+                                    {{ all_products_list.price|floatformat:0}} <i class="fa-solid fa-ruble-sign"></i>
+                                </b>
+                            </h4>
                         </p>
                     </div>
-                  </div>
+                    {% if all_products_list.count <= 3 %}
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                <span class="badge text-bg-danger productCardBadge">
+                                    Осталось в наличии: {{all_products_list.count}}
+                                </span>
+                            </small>
+                        </div>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger productCardBadge">
+                            <i class="fa-solid fa-exclamation"></i>
+                            <span class="visually-hidden">
+                                Товара осталось мало на складе
+                            </span> 
+                        </span>
+                    {% endif %}
+                </div>
             </div>
             <div class="col-12 col-lg-6 order-1 order-lg-2">
                 <h1 id="motto">
