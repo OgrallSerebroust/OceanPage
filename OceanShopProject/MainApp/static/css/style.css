@@ -27,9 +27,33 @@ body {
     color: #034579;
 }
 
+.navIconLinksBlock {
+    width: 20vw;
+}
+
+.navIconLinksBlock > a {
+    color: #E52520;
+}
+
+.navIconLinksBlock > a:hover {
+    color: #034579;
+}
+
+.navIconLinksBlock > a > i {
+    font-size: 15pt;
+}
 
 .mainButtons {
     background-color: #2B6092;
+    border: none;
+}
+
+.mainButtons:hover {
+    background-color: #E52520;
+}
+
+.mainButtons:active {
+    background-color: #034579 !important;
 }
 
 .indexBG {
@@ -144,6 +168,18 @@ body {
     color: #034579;
 }
 
+.cartProduct {
+    color: #034579;
+}
+
+.cartProductImage {
+    height: 11vh;
+}
+
+.cartDel > a {
+    color: #034579;
+}
+
 #menuBlockFull {
     height: 11vh;
 }
@@ -210,12 +246,26 @@ body {
     text-decoration: none;
 }
 
+#emptyCartButtonBlock {
+    padding-top: 3vh;
+}
+
 #contactsTelegramLink {
     color: #0E0E0E;
     text-decoration: none;
 }
 
+#confirmOrder {
+    color: #FFFFFF;
+    background-color: #E52520;
+    border: none;
+}
+
 @media(max-width: 991.98px) {
+    .navIconLinksBlock {
+        width: auto;
+    }
+
     .indexBG {
         height: 92vh;
     }

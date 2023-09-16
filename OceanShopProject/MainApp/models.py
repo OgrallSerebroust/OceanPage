@@ -19,7 +19,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name="Описание товара")
     country = models.CharField(verbose_name="Страна производитель", max_length=256)
     weight = models.FloatField(verbose_name="Примерный вес за единицу")
-    price = models.FloatField(verbose_name="Цена за единицу")
+    price = models.DecimalField(verbose_name="Цена за единицу", max_digits=7, decimal_places=2)
     count = models.IntegerField(verbose_name="Остаток на складе")
 
     class Meta:

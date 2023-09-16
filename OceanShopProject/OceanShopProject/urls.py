@@ -24,6 +24,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+    path("cart/", include("Cart.urls")),
     path("", include("MainApp.urls")),
 ]
 

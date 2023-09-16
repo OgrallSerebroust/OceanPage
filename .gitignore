@@ -1,7 +1,11 @@
 __pycache__
+media
 static/admin
+OceanShopProject/Cart/__init__.py
 OceanShopProject/OceanShopProject/__init__.py
+OceanShopProject/Orders/__init__.py
 OceanShopProject/OceanShopProject/asgi.py
+DB.txt
 manage.py
 passenger_wsgi.py
 OceanShopProject/OceanShopProject/settings.py

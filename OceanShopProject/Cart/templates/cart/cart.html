@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center blocksTitleFirst">
+                <h3>
+                    <b style="color: #034579;">
+                        Корзина
+                    </b>
+                </h3>
+                Корзина с вашим заказом
+            </div>
+        </div>
+        {% if cart|length > 0 %}
+            <div class="row">
+                <div class="col-12">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Продукт
+                                </th>
+                                <th scope="col">
+                                    Цена
+                                </th>
+                                <th scope="col">
+                                    Количество
+                                </th>
+                                <th scope="col" colspan="2">
+                                    Общая цена
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart %}
+                                {% with product=item.product %}
+                                    <tr>
+                                        <td class="cartProduct">
+                                            {% thumbnail product.photo "600" as im %}
+			                		            <img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="cartProductImage" alt="...">
+							                {% endthumbnail %}
+                                            {{ product.name }}
+                                        </td>
+                                        <td>
+                                            {{ product.price }} &#8381/кг
+                                        </td>
+                                        <td>
+                                            {{ item.quantity }}
+                                        </td>
+                                        <td>
+                                            {{ item.total_price }} &#8381
+                                        </td>
+                                        <td class="cartDel">
+                                            <a href="{% url "cart:cart_remove" product.id %}">
+                                                <i class="fa-regular fa-circle-xmark"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endwith %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="#" class="btn btn-primary" id="confirmOrder">
+                        Оформить заказ
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-12 text-center">
+                    Увы, вы ещё не добавили ни одного товара и ваша корзина пуста...
+                </div>
+                <div class="col-12 text-center" id="emptyCartButtonBlock">
+                    <a class="btn btn-primary mainButtons" href="{% url "catalog" %}?category=1">
+                        К каталогу
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

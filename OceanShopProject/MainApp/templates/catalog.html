@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -16,8 +18,12 @@
 	            {% for product in page_data %}
 		            <div class="col">
 		                <div class="card h-100 productCard">
-			                <img src="{{ product.photo.url }}" class="card-img-top cardsHeadImage" alt="...">
-				            <div class="card-body">
+							{% thumbnail product.photo "600" as im %}
+								<a href="{{product.photo.url}}">
+			                		<img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top cardsHeadImage" alt="...">
+								</a>
+							{% endthumbnail %}
+							<div class="card-body">
 					            <h5 class="card-title text-center productCardTitle">
 				                    {{ product.name }}
 				                </h5>
@@ -38,6 +44,11 @@
 	    							        {{ product.price|floatformat:0}} <i class="fa-solid fa-ruble-sign"></i>
 		    					        </b>
 			    			        </h4>
+									<form action="{% url "cart:add_to_cart" product.id %}" method="post">
+										{{ add_to_cart_form }}
+										{% csrf_token %}
+										<input type="submit" value="Добавить">
+									</form>
 				    	        </p>
     				        </div>
 	    			        {% if product.count <= 3 %}

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-12 col-lg-6 order-2 order-ld-1">
                 <div class="card h-100 productCard">
-                    <img src="{{ all_products_list.photo.url }}" class="card-img-top" id="indexCardHeadImg" alt="...">
+                    <img src="{% if all_products_list.photo.url %}{{ all_products_list.photo.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top" id="indexCardHeadImg" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center productCardTitle">
                             {{ all_products_list.name }}
@@ -72,7 +72,7 @@
                 <p>
                     Ежедневно мы стараемся найти лучшую цену на ваши любимые продукты, ищем новых поставщиков наилучшего соотношения цены и качества и постоянно ищем правильных поставщиков для нашей продукции
                 </p>
-                <a class="btn btn-primary mainButtons" href="{% url "catalog" %}">
+                <a class="btn btn-primary mainButtons" href="{% url "catalog" %}?category=1">
                     К каталогу
                 </a>
             </div>

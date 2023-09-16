@@ -2,6 +2,8 @@ asgiref==3.7.2
 Django==3.2.20
 fontawesomefree==6.4.0
 mysqlclient==2.2.0
+Pillow==10.0.0
 pytz==2023.3
+sorl-thumbnail==12.9.0
 sqlparse==0.4.4
 typing_extensions==4.7.1
