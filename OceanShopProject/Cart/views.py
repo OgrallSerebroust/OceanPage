@@ -4,6 +4,8 @@ from MainApp.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 from MainApp.views import get_categories_for_menu
+from Orders.forms import OrderCreateForm
+from Orders.models import OrderItem
 
 @require_POST
 def add_to_cart(request, product_id):
@@ -17,8 +19,25 @@ def add_to_cart(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, "cart/cart.html", {"cart": cart,
-        "categories": get_categories_for_menu})
+    if request.method == "POST":
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            for item in cart:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item["product"],
+                    price=item["price"],
+                    quantity=item["quantity"]
+                )
+            cart.clear()
+            return render(request, "orders/created.html", {"order": order})
+    else:
+        return render(request, "cart/cart.html", {
+        "cart": cart,
+        "categories": get_categories_for_menu,
+        "form": OrderCreateForm
+    })
 
 def cart_remove(request, product_id):
     cart = Cart(request)

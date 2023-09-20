@@ -66,9 +66,12 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <a href="#" class="btn btn-primary" id="confirmOrder">
+                    {% comment %} <a href="{% url "orders:order_create" %}" class="btn btn-primary" id="confirmOrder">
                         Оформить заказ
-                    </a>
+                    </a> {% endcomment %}
+                    <button type="button" class="btn btn-primary secondButtons" id="confirmOrder" data-bs-toggle="modal" data-bs-target="#confirmOrderModal">
+                        Оформить заказ
+                    </button>
                 </div>
             </div>
         {% else %}
@@ -83,5 +86,68 @@
                 </div>
             </div>
         {% endif %}
+    </div>
+    <div class="modal fade" id="confirmOrderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="confirmOrderModalLabel">
+                        Оформление заказа
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class ="container-fluid">
+                        <form action="" method="post" id="addOrderForm">
+                            <div class="row">
+                                {% csrf_token %}
+                                {{ form.non_field_errors }}
+                                <div class="col-12">
+                                    {{ form.first_name.errors }}
+                                    <div class="form-floating">
+                                        {{ form.first_name }}
+                                        <label for="{{ form.first_name.id_for_label }}">
+                                            <i class="fa-solid fa-address-book"></i> {{ form.first_name.label }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    {{ form.last_name.errors }}
+                                    <div class="form-floating">
+                                        {{ form.last_name }}
+                                        <label for="{{ form.last_name.id_for_label }}">
+                                            <i class="fa-solid fa-address-book"></i> {{ form.last_name.label }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    {{ form.email.errors }}
+                                    <div class="form-floating">
+                                        {{ form.email }}
+                                        <label for="{{ form.email.id_for_label }}">
+                                            <i class="fa-solid fa-at"></i> {{ form.email.label }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12" style="padding-bottom: 0;">
+                                    {{ form.address.errors }}
+                                    <div class="form-floating">
+                                        {{ form.address }}
+                                        <label for="{{ form.address.id_for_label }}">
+                                            <i class="fa-solid fa-location-dot"></i> {{ form.address.label }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary mainButtons" data-bs-dismiss="modal">
+                        Вернуться к корзине
+                    </button>
+                    <input type="submit" class="btn btn-secondary secondButtons" form="addOrderForm" value="Подтвердить заказ">
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

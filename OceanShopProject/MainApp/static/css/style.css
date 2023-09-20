@@ -56,6 +56,19 @@ body {
     background-color: #034579 !important;
 }
 
+.secondButtons {
+    background-color: #E52520;
+    border: none;
+}
+
+.secondButtons:hover {
+    background-color: #2B6092;
+}
+
+.secondButtons:active {
+    background-color: #034579 !important;
+}
+
 .indexBG {
     position: absolute;
     width: 100%;
@@ -255,10 +268,33 @@ body {
     text-decoration: none;
 }
 
-#confirmOrder {
+#confirmOrderModal > .modal-dialog > .modal-content > .modal-header {
+    border-bottom: 1px solid #FFFFFF;
+}
+
+#confirmOrderModal > .modal-dialog > .modal-content {
+    background-color: #0E0E0E;
+}
+
+#confirmOrderModal > .modal-dialog > .modal-content > .modal-footer {
+    border-top: 1px solid #FFFFFF;
+}
+
+
+#confirmOrderModalLabel {
     color: #FFFFFF;
-    background-color: #E52520;
-    border: none;
+}
+
+#addOrderForm > div > .col-12 {
+    padding-bottom: 1.5vh;
+}
+
+#addOrderForm > div > .col-12 > div > input {
+    color: #0E0E0E;
+}
+
+#addOrderForm > div > .col-12 > div > label {
+    color: #034579;
 }
 
 @media(max-width: 991.98px) {

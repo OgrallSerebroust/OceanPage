@@ -19,9 +19,7 @@
 		            <div class="col">
 		                <div class="card h-100 productCard">
 							{% thumbnail product.photo "600" as im %}
-								<a href="{{product.photo.url}}">
-			                		<img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top cardsHeadImage" alt="...">
-								</a>
+			                	<img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top cardsHeadImage" alt="...">
 							{% endthumbnail %}
 							<div class="card-body">
 					            <h5 class="card-title text-center productCardTitle">
