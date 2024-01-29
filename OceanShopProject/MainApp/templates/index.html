@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load thumbnail %}
 {% block content %}
     <div class="indexBG" id="indexBGFull">
         <img src="{% static "image/indexBG.jpg" %}" alt="">
@@ -9,45 +10,36 @@
     </div>
     <div class="container-fluid" id="promotionBlock">
         <div class="row">
-            <div class="col-12 col-lg-6 order-2 order-ld-1">
-                <div class="card h-100 productCard">
-                    <img src="{% if all_products_list.photo.url %}{{ all_products_list.photo.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top" id="indexCardHeadImg" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center productCardTitle">
-                            {{ all_products_list.name }}
-                        </h5>
-                        <div class="row card-text">
-                            <div class="col-12">
-                                <i class="fa-solid fa-globe productCardIcons"></i> Страна производитель: {{ all_products_list.country }}
-                            </div>
-                            <div class="col-12">
-                                <i class="fa-solid fa-weight-scale productCardIcons"></i> Вес: {{ all_products_list.weight }} кг
+            <div class="col-12 col-lg-6 order-2 order-ld-1 promotionSlider">
+                {% if all_promo_list.count != 0 %}
+                    {% for promo in all_promo_list %}
+                        <div class="card h-100 productCard">
+                            {% thumbnail promo.photo "1200" as im %}
+			                	<img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top" id="indexCardHeadImg" alt="Sales">
+							{% endthumbnail %}
+                            <div class="card-body">
+                                <h5 class="card-title text-center productCardTitle">
+                                    {{ promo.name }}
+                                </h5>
+                                <div class="row card-text">
+                                    <div class="col-12">
+                                        <i class="fa-solid fa-globe productCardIcons"></i> Страна производитель: {{ promo.country }}
+                                    </div>
+                                    <div class="col-12">
+                                        <i class="fa-solid fa-weight-scale productCardIcons"></i> Вес: {{ promo.weight }} кг
+                                    </div>
+                                </div>
+                                <p class="card-text">
+                                    <h4>
+                                        <b>
+                                            {{ promo.price|floatformat:0}} <i class="fa-solid fa-ruble-sign"></i>
+                                        </b>
+                                    </h4>
+                                </p>
                             </div>
                         </div>
-                        <p class="card-text">
-                            <h4>
-                                <b>
-                                    {{ all_products_list.price|floatformat:0}} <i class="fa-solid fa-ruble-sign"></i>
-                                </b>
-                            </h4>
-                        </p>
-                    </div>
-                    {% if all_products_list.count <= 3 %}
-                        <div class="card-footer">
-                            <small class="text-muted">
-                                <span class="badge text-bg-danger productCardBadge">
-                                    Осталось в наличии: {{all_products_list.count}}
-                                </span>
-                            </small>
-                        </div>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger productCardBadge">
-                            <i class="fa-solid fa-exclamation"></i>
-                            <span class="visually-hidden">
-                                Товара осталось мало на складе
-                            </span> 
-                        </span>
-                    {% endif %}
-                </div>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="col-12 col-lg-6 order-1 order-lg-2">
                 <h1 id="motto">
@@ -109,7 +101,9 @@
     	                {% for most_relevanted_product in most_relevanted_products %}
 			                <div class="col">
         		                <div class="card h-100 productCard">
-          			                <img src="{{ most_relevanted_product.photo.url }}" class="card-img-top" alt="...">
+                                    {% thumbnail most_relevanted_product.photo "600" as im %}
+			                	        <img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top cardsHeadImage" alt="...">
+							        {% endthumbnail %}
           			                <div class="card-body">
             			                <h5 class="card-title text-center productCardTitle">
 							                {{ most_relevanted_product.name }}
@@ -156,4 +150,6 @@
             </div>
         {% endif %}
     </div>
+    <script src="{% static "js/slick.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/initSlick.js" %}" type="text/javascript"></script>
 {% endblock %}

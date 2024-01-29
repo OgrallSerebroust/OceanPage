@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load main_app_extras %}
 {% load static %}
 {% load thumbnail %}
 {% block content %}
@@ -14,7 +15,7 @@
             </div>
         </div>
         {% if cart|length > 0 %}
-            <div class="row">
+            <div class="row" id="cartRowFull">
                 <div class="col-12">
                     <table class="table align-middle">
                         <thead>
@@ -44,13 +45,43 @@
                                             {{ product.name }}
                                         </td>
                                         <td>
-                                            {{ product.price }} &#8381/кг
+                                            {% if product.price|entireweight %}
+                                                {{ product.price|floatformat }}
+                                            {% else %}
+                                                {{ product.price|floatformat:2 }}
+                                            {% endif %}
+                                            {% if product.price_for_kg %}
+                                                &#8381/кг
+                                            {% else %}
+                                                &#8381/шт
+                                            {% endif %}
                                         </td>
                                         <td>
-                                            {{ item.quantity }}
+                                            {% if item.quantity|entireweight %}
+                                                {{ item.quantity|floatformat }} кг
+                                            {% else %}
+                                                {{ item.quantity|tograms }}
+                                            {% endif %}
+                                            {% if item.notInAllWarn %}
+                                                <small class="text-muted">
+                                                    <span class="badge text-bg-danger productCardBadge">
+                                                        Количество изменено!<br>
+                                                        Осталось в наличии:
+                                                        {% if product.count|entireweight %}
+                                                            {{ product.count|floatformat }} кг
+                                                        {% else %}
+                                                            {{ product.count|tograms }}
+                                                        {% endif %}
+                                                    </span>
+                                                </small>
+                                            {% endif %}
                                         </td>
                                         <td>
-                                            {{ item.total_price }} &#8381
+                                            {% if item.total_price|entireweight %}
+                                                {{ item.total_price|floatformat }}
+                                            {% else %}
+                                                {{ item.total_price|floatformat:2 }}
+                                            {% endif %} &#8381
                                         </td>
                                         <td class="cartDel">
                                             <a href="{% url "cart:cart_remove" product.id %}">
@@ -62,6 +93,74 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="row" id="cartRowMobile">
+                <div class="col-12">
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <div class="row">
+                                <div class="col-4">
+                                    {% thumbnail product.photo "600" as im %}
+			                		    <img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="cartProductImageMobile" alt="...">
+							        {% endthumbnail %}
+                                </div>
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>
+                                                <b>
+                                                    {% if item.total_price|entireweight %}
+                                                        {{ item.total_price|floatformat }}
+                                                    {% else %}
+                                                        {{ item.total_price }}
+                                                    {% endif %} &#8381
+                                                </b>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="text-center productCardTitle productCardTitleMobile">
+                                                {{ product.name }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <i class="fa-solid fa-weight-scale productCardIcons"></i> Вес:
+                                            {% if item.quantity|entireweight %}
+                                                {{ item.quantity|floatformat }} кг
+                                            {% else %}
+                                                {{ item.quantity|tograms }}
+                                            {% endif %}
+                                            {% if item.notInAllWarn %}
+                                                <small class="text-muted">
+                                                    <span class="badge text-bg-danger productCardBadge">
+                                                        Количество изменено!<br>
+                                                        Осталось в наличии:
+                                                        {% if product.count|entireweight %}
+                                                            {{ product.count|floatformat }} кг
+                                                        {% else %}
+                                                            {{ product.count|tograms }}
+                                                        {% endif %}
+                                                    </span>
+                                                </small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-end cartDel">
+                                            <a href="{% url "cart:cart_remove" product.id %}">
+                                                <i class="fa-regular fa-circle-xmark"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        {% endwith %}
+                    {% endfor %}
                 </div>
             </div>
             <div class="row">

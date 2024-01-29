@@ -3,6 +3,19 @@ body {
     color: #0E0E0E;
 }
 
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]:hover, input[type="number"]:focus {
+    -moz-appearance: number-input;
+}
+
 .menuBlocks {
     background: #0E0E0E;
     color: #FFFFFF;
@@ -33,6 +46,7 @@ body {
 
 .navIconLinksBlock > a {
     color: #E52520;
+    text-decoration: none;
 }
 
 .navIconLinksBlock > a:hover {
@@ -136,6 +150,48 @@ body {
     background: #E52520 !important;
 }
 
+.productCardTitleMobile {
+    color: #FFFFFF;
+}
+
+.groupCheckQuantity {
+    width: inherit;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.quantitySelectionField {
+    width: 70%;
+    background: rgba(43, 96, 146, 0.25);
+    border: 1px solid #034579;
+    color: #FFFFFF;
+    padding: 0 .8vw;
+}
+
+.groupCheckQuantity > .changeButtonPrevious, .groupCheckQuantity > .changeButtonNext {
+    border: 1px solid #034579;
+    color: #034579;
+}
+
+.groupCheckQuantity > .changeButtonPrevious:hover {
+    background-color: #2B6092;
+    color: #FFFFFF;
+}
+
+.groupCheckQuantity > .changeButtonNext:hover {
+    background-color: #2B6092;
+    color: #FFFFFF;
+}
+
+.searchCards {
+    min-width: 20vw;
+    margin-right: 1.5vw;
+}
+
+.searchCards:nth-of-type(1) {
+    margin-left: 1.5vw;
+}
+
 .catalogTabs > .nav-item > .nav-link {
     color: #0E0E0E;
 }
@@ -189,6 +245,10 @@ body {
     height: 11vh;
 }
 
+.cartProductImageMobile {
+    width: 100%;
+}
+
 .cartDel > a {
     color: #034579;
 }
@@ -207,6 +267,40 @@ body {
 
 #navbarBrandLogoMobile {
     width: 50vw;
+}
+
+#searchRow {
+    position: absolute;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+}
+
+#searchCardsBlock {
+    overflow-x: scroll;
+    padding: 3vh 0;
+    margin-bottom: 1.5vh;
+}
+
+#searchCardsBlock::-webkit-scrollbar {
+    height: 1vh;
+}
+
+#searchCardsBlock::-webkit-scrollbar-thumb {
+    background-color: #E52520;
+}
+
+#searchFormBlock {
+    margin-top: 1.5vw;
+}
+
+#searchResultsBlock {
+    padding: 0 1.5vh;
+}
+
+#searchNullResultBlock {
+    padding: 3vh 0;
+    color: #FFFFFF;
 }
 
 #promotionBlock > .row {
@@ -302,6 +396,11 @@ body {
         width: auto;
     }
 
+    .searchCards {
+        min-width: 90vw;
+        margin-right: 3vw;
+    }
+
     .indexBG {
         height: 92vh;
     }
@@ -314,12 +413,24 @@ body {
         display: none;
     }
 
+    #menuBlockMobile > div > .navbar-brand {
+        margin: 0;
+    }
+
+    #indexCardHeadImg {
+        max-height: 30vh;
+    }
+
     #promotionBlock > .row {
         height: 92vh;
     }
 
     #motto {
         text-align: center;
+    }
+
+    #cartRowFull {
+        display: none;
     }
 
     #deliveryContent {
@@ -339,6 +450,11 @@ body {
     .indexBG > img {
         height: 89vh;
     }
+
+    .promotionSlider {
+        height: 89vh;
+        padding-top: 5vh;
+    }
     
     #menuBlockMobile, #indexBGMobile {
         display: none;
@@ -350,5 +466,9 @@ body {
 
     #promoCard {
         width: 75%;
+    }
+
+    #cartRowMobile {
+        display: none;
     }
 }

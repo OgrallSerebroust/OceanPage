@@ -1,0 +1,77 @@
+{% load main_app_extras %}
+{% load static %}
+{% load thumbnail %}
+{% if searched_products.count != 0 %}
+    <div class="col-12 d-flex" id="searchCardsBlock">
+        {% for searched_product in searched_products %}
+            <div class="card productCard searchCards">
+                {% thumbnail searched_product.photo "600" as im %}
+			        <img src="{% if im.url %}{{ im.url }}{% else %}{% static "image/no_image.jpg" %}{% endif %}" class="card-img-top cardsHeadImage" alt="...">
+		        {% endthumbnail %}
+                <div class="card-body">
+                    <h5 class="card-title text-center productCardTitle">
+                        {{ searched_product.name }}
+                    </h5>
+                    <div class="row card-text">
+                        <div class="col-12">
+                            <i class="fa-solid fa-globe productCardIcons"></i> Страна производитель: {{ searched_product.country }}
+                        </div>
+                        <div class="col-12">
+                            <i class="fa-solid fa-weight-scale productCardIcons"></i> Примерный вес: {% if searched_product.weight|entireweight %}{{ searched_product.weight|floatformat }} кг{% else %}{{ searched_product.weight|tograms }}{% endif %}
+                        </div>
+                    </div>
+                    <p class="card-text">
+                        <h4>
+                            <b>
+                                {{ searched_product.price|floatformat:0 }} <i class="fa-solid fa-ruble-sign"></i>{% if searched_product.price_for_kg %}/кг{% else %}/шт{% endif %}
+                            </b>
+                        </h4>
+                        <form action="{% url "cart:add_to_cart" searched_product.id %}" method="post" data-product="{{ searched_product.id }}">
+                            <div class="row">
+                                {% csrf_token %}
+                                {{ add_to_cart_form.non_field_errors }}
+                                <div class="col-12">
+                                    {{ add_to_cart_form.quantity.errors }}
+                                    <div class="btn-group groupCheckQuantity" role="group" aria-label="Quantity of the product to add to the cart">
+                                        <button type="button" class="btn btn-outline-primary text-nowrap changeButtonPrevious" data-product="{{ searched_product.id }}">
+                                            - 1кг
+                                        </button>
+                                        {{ add_to_cart_form.quantity }}
+                                        <button type="button" class="btn btn-outline-primary text-nowrap changeButtonNext" data-product="{{ searched_product.id }}">
+                                            + 1кг
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% comment %} {{ add_to_cart_form }} {% endcomment %}
+                            <div class="row">
+                                <div class="d-flex col-12 justify-content-center">
+                                    <input type="submit" value="Добавить" class="btn btn-primary secondButtons">
+                                </div>
+                            </div>
+                        </form>
+                    </p>
+                </div>
+                {% if searched_product.count <= 3 %}
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <span class="badge text-bg-danger productCardBadge">
+                                Осталось в наличии: {{searched_product.count}}
+                            </span>
+                        </small>
+                    </div>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger productCardBadge">
+                        <i class="fa-solid fa-exclamation"></i>
+                        <span class="visually-hidden">
+                            Товара осталось мало на складе
+                        </span> 
+                    </span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="col-12 text-center" id="searchNullResultBlock">
+        Увы, по вашему запросу ничего не найдено.
+    </div>
+{% endif %}

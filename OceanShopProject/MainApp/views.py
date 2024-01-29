@@ -1,6 +1,8 @@
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
-from random import randint
+from django.core.paginator import Paginator
+from random import shuffle
+from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import require_POST
 from .models import ProductType, Product
 from Cart.forms import CartAddProductForm
 
@@ -10,10 +12,11 @@ def get_categories_for_menu():
 
 
 def index(request):
-    all_products_list = Product.objects.get(id = randint(1, Product.objects.count()-1))
+    # all_products_list = Product.objects.get(id = randint(1, Product.objects.count()-1))
+    all_promo_list = Product.objects.order_by("?")[:9]
     most_relevanted_products = Product.objects.all()[:6]
     return render(request, "index.html", {
-        "all_products_list": all_products_list,
+        "all_promo_list": all_promo_list,
         "categories": get_categories_for_menu,
         "most_relevanted_products": most_relevanted_products
     })
@@ -47,3 +50,14 @@ def delivery(request):
     return render(request, "delivery.html", {
         "categories": get_categories_for_menu
     })
+
+
+def search(request):
+    if request.is_ajax():
+        searched_products = Product.objects.filter(name__icontains = request.POST["search"])
+        return render(request=request, template_name="searchResultsBlock.html", context={
+            "searched_products": searched_products,
+            "add_to_cart_form": CartAddProductForm()
+        })
+    else:
+        return redirect("index")

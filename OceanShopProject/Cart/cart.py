@@ -10,13 +10,18 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    def add(self, product, quantity=1, update_quantity=False):
+    def add(self, product, quantity: float = 1.0, update_quantity: bool = False):
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {
-                "quantity": 0,
-                "price": str(product.price)
+                "quantity": .0,
+                "price": float(product.price),
+                "notInAllWarn": False
             }
+        if quantity > product.count:
+            self.cart[product_id]["quantity"] = .0
+            quantity = product.count
+            self.cart[product_id]["notInAllWarn"] = True
         if update_quantity:
             self.cart[product_id]["quantity"] = quantity
         else:
@@ -40,14 +45,17 @@ class Cart(object):
             self.cart[str(product.id)]["product"] = product
         for value in self.cart.values():
             value["price"] = Decimal(value["price"])
-            value["total_price"] = value["price"] * value["quantity"]
+            value["total_price"] = value["price"] * Decimal(value["quantity"])
             yield value
     
     def __len__(self):
+        return len(self.cart)
+        return sum((round(value["quantity"])) for value in self.cart.values())
+        return sum(float(value["quantity"]) for value in self.cart.values())
         return sum(value["quantity"] for value in self.cart.values())
     
     def get_total_price(self):
-        return sum(Decimal(value["price"]) * value["quantity"] for value in self.cart.values())
+        return sum(Decimal(value["price"]) * Decimal(value["quantity"]) for value in self.cart.values())
     
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
