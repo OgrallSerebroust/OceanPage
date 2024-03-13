@@ -1,9 +1,14 @@
 from django.contrib import admin
-from .models import ProductType, Product
+from .models import MainPageTexts, ProductType, Product, OtherPages
+
+
+class MainPageTextsAdmin(admin.ModelAdmin):
+    list_display = ["description", "id"]
 
 
 class ProductTypeAdmin(admin.ModelAdmin):
     list_display = ["name", "id"]
+
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ["name", "product_type"]
@@ -12,3 +17,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(ProductType, ProductTypeAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(MainPageTexts, MainPageTextsAdmin)
+admin.site.register(OtherPages)

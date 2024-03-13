@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center blocksTitleFirst">
+            <h3>
+                <b class="coloredTitleWords">
+                    {{ page_content.title }}
+                </b>
+            </h3>
+            <h6>
+                {{ page_content.sub_title }}
+            </h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ page_content.content|safe }}
+        </div>
+    </div>
+</div>

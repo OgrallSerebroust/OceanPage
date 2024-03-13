@@ -227,12 +227,21 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-12" style="padding-bottom: 0;">
+                                <div class="col-12">
                                     {{ form.address.errors }}
                                     <div class="form-floating">
                                         {{ form.address }}
                                         <label for="{{ form.address.id_for_label }}">
                                             <i class="fa-solid fa-location-dot"></i> {{ form.address.label }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12" style="padding-bottom: 0;">
+                                    {{ form.address.errors }}
+                                    <div class="form-floating">
+                                        {{ form.mobile_phone }}
+                                        <label for="{{ form.mobile_phone.id_for_label }}">
+                                            <i class="fa-solid fa-phone"></i> {{ form.mobile_phone.label }}
                                         </label>
                                     </div>
                                 </div>

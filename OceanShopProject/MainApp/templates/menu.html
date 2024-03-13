@@ -27,12 +27,12 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{% url "about" %}">
                             О магазине
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{% url "how_to_make_order" %}">
                             Как сделать заказ
                         </a>
                     </li>
@@ -48,7 +48,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item dropdown">
+            {% comment %} <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Статьи
                 </a>
@@ -59,7 +59,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> {% endcomment %}
         </ul>
         <a class="navbar-brand" href="{% url "index" %}">
             <img src="{% static "image/logo.webp" %}" alt="logo" id="navbarBrandLogoFull">
@@ -117,12 +117,12 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url "about" %}">
                                 О магазине
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url "how_to_make_order" %}">
                                 Как сделать заказ
                             </a>
                         </li>
@@ -138,7 +138,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                {% comment %} <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle navbarMenuLinks" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Статьи
                     </a>
@@ -149,7 +149,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> {% endcomment %}
             </ul>
         </div>
     </div>

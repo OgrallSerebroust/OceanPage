@@ -3,7 +3,7 @@ from random import shuffle
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
-from .models import ProductType, Product
+from .models import MainPageTexts, ProductType, Product, OtherPages
 from Cart.forms import CartAddProductForm
 
 
@@ -15,10 +15,16 @@ def index(request):
     # all_products_list = Product.objects.get(id = randint(1, Product.objects.count()-1))
     all_promo_list = Product.objects.order_by("?")[:9]
     most_relevanted_products = Product.objects.all()[:6]
+    motto = MainPageTexts.objects.get(pk=1)
+    price_benefit = MainPageTexts.objects.get(pk=2)
+    sales_benefit = MainPageTexts.objects.get(pk=3)
     return render(request, "index.html", {
         "all_promo_list": all_promo_list,
         "categories": get_categories_for_menu,
-        "most_relevanted_products": most_relevanted_products
+        "most_relevanted_products": most_relevanted_products,
+        "motto": motto,
+        "price_benefit": price_benefit,
+        "sales_benefit": sales_benefit
     })
 
 
@@ -37,6 +43,22 @@ def catalog(request):
         "page_range": paginate_frozen_fish_products.get_elided_page_range(number=page_data.number, on_each_side=2),
         "page_data": page_data,
         "add_to_cart_form": CartAddProductForm()
+    })
+
+
+def about(request):
+    page_content = OtherPages.objects.get(pk=1)
+    return render(request, "about.html", {
+        "categories": get_categories_for_menu,
+        "page_content": page_content
+    })
+
+
+def how_to_make_order(request):
+    page_content = OtherPages.objects.get(pk=2)
+    return render(request, "howToMakeOrder.html", {
+        "categories": get_categories_for_menu,
+        "page_content": page_content
     })
 
 

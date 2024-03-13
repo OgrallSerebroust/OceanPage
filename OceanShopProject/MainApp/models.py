@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class ProductType(models.Model):
@@ -29,3 +30,22 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MainPageTexts(models.Model):
+    text = RichTextField(verbose_name="Текст для вывода")
+    description = models.TextField(verbose_name="Описание", null=True, default=None)
+
+    class Meta:
+        verbose_name = "Текст для блока на основных страницах"
+        verbose_name_plural = "Тексты для блоков на основных страницах"
+
+
+class OtherPages(models.Model):
+    title = models.CharField(verbose_name="Заголовок страницы", max_length=255)
+    sub_title = models.CharField(verbose_name="Подпись под заголовком", max_length=255, null=True)
+    content = RichTextField(verbose_name="Контент страницы")
+
+    class Meta:
+        verbose_name = "Второстепенная страница"
+        verbose_name_plural = "Второстепенные страницы"

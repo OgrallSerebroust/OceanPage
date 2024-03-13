@@ -1,6 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Thank you</h1>
-<p>Your order has been successfully completed. Your order number is
-    <strong>{{ order.id }}</strong>.</p>
-{% endblock content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center blocksTitleFirst">
+                <h3>
+                    <b class="coloredTitleWords">
+                        Заказ успешно создан
+                    </b>
+                </h3>
+                <h6>
+                    Заказ успешно создан! Спасибо!
+                </h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h5 class="text-center">
+                    Номер вашего заказа: <strong>{{ order.id }}</strong><br>
+                    Пожалуйста, запомните его. Через пару минут с вами свяжутся по поводу заказа, чтобы уточнить формальности.
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center" id="emptyCartButtonBlock">
+                <a class="btn btn-primary mainButtons" href="{% url "catalog" %}?category=1">
+                    Обратно к каталогу
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

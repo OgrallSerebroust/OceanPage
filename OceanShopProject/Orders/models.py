@@ -7,6 +7,7 @@ class Order(models.Model):
     last_name = models.CharField(verbose_name="Фамилия", max_length=255)
     email = models.EmailField()
     address = models.CharField(verbose_name="Адрес", max_length=255)
+    mobile_phone = models.CharField(verbose_name="Номер для связи", max_length=30, blank=False, null=True)
     # + created, updated, paid?
 
     class Meta:

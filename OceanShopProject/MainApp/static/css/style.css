@@ -107,6 +107,10 @@ input[type="number"]:hover, input[type="number"]:focus {
     padding-bottom: 3vh;
 }
 
+.coloredTitleWords {
+    color: #034579;
+}
+
 .blockBenefits {
     padding-top: 4.63vh;
 }
@@ -259,6 +263,10 @@ input[type="number"]:hover, input[type="number"]:focus {
 
 #menuNavbarToggler {
     color: #FFFFFF;
+}
+
+#menuBlockFull  > div > .navbar-brand {
+    margin-right: 0; /* TODO Для короткого меню */
 }
 
 #navbarBrandLogoFull {
