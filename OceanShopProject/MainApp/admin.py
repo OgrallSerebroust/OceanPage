@@ -11,8 +11,10 @@ class ProductTypeAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
+    actions = None
     list_display = ["name", "product_type"]
-    list_filter =["product_type"]
+    list_filter = ["product_type"]
+    search_fields = ["name"]
 
 
 admin.site.register(ProductType, ProductTypeAdmin)

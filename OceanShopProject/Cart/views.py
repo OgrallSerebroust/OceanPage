@@ -42,7 +42,10 @@ def cart_detail(request):
                     quantity=item["quantity"]
                 )
             cart.clear()
-            return render(request, "orders/created.html", {"order": order})
+            return render(request, "orders/created.html", {
+                "categories": get_categories_for_menu,
+                "order": order
+            })
     else:
         return render(request, "cart/cart.html", {
         "cart": cart,

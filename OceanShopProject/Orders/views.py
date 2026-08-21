@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import OrderCreateForm
 from .models import OrderItem
 from Cart.cart import Cart
+from MainApp.models import ProductType
 
 
 def order_create(request):
@@ -18,7 +19,6 @@ def order_create(request):
                     quantity=item["quantity"]
                 )
             cart.clear()
-            return render(request, "orders/created.html", {"order": order})
-    else:
-        form = OrderCreateForm
-    return render(request, "orders/create.html", {"cart": cart, "form": form})
+            return render(request, "orders/created.html", {
+                "categories": ProductType.objects.all()
+            })
